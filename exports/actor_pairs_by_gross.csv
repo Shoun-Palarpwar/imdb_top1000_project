@@ -1,0 +1,117 @@
+actor_a,actor_b,films_together,avg_rating,avg_gross
+Joe Russo,Mark Ruffalo,2,8.4,768594241.0
+Joe Russo,Robert Downey Jr.,3,8.2,648424277.0
+Robert Downey Jr.,Chris Evans,3,8.07,629912299.0
+Robert Downey Jr.,Mark Ruffalo,3,8.17,523422855.0
+Scarlett Johansson,Robert Downey Jr.,2,7.9,515681948.0
+Joe Russo,Chris Evans,3,7.97,508741307.0
+Mark Ruffalo,Chris Hemsworth,2,8.15,496936886.0
+Domhnall Gleeson,Oscar Isaac,2,7.8,481052592.0
+Craig T. Nelson,Holly Hunter,2,7.8,435011418.0
+Scarlett Johansson,Chris Evans,3,7.83,430376823.0
+Chris Pratt,Vin Diesel,2,7.8,361494851.0
+Chris Pratt,Zoe Saldana,2,7.8,361494851.0
+Vin Diesel,Zoe Saldana,2,7.8,361494851.0
+Elijah Wood,Viggo Mortensen,2,8.8,360198635.0
+Viggo Mortensen,Ian McKellen,2,8.8,360198635.0
+Viggo Mortensen,Orlando Bloom,2,8.8,360198635.0
+Elijah Wood,Ian McKellen,3,8.8,345314007.0
+Elijah Wood,Orlando Bloom,3,8.8,345314007.0
+Ian McKellen,Orlando Bloom,3,8.8,345314007.0
+Ryan Reynolds,Morena Baccarin,2,7.85,343831222.0
+Daniel Radcliffe,Michael Gambon,2,7.85,341485208.0
+Emma Watson,Michael Gambon,2,7.85,341485208.0
+Rupert Grint,Michael Gambon,2,7.85,341485208.0
+Scarlett Johansson,Joe Russo,2,7.75,333925461.0
+Tom Hanks,Tim Allen,4,8.05,321672825.0
+Harrison Ford,Carrie Fisher,3,8.53,307446872.0
+Mark Hamill,Carrie Fisher,3,8.53,307446872.0
+Mark Hamill,Harrison Ford,3,8.53,307446872.0
+Daniel Radcliffe,Rupert Grint,6,7.77,305983506.0
+Daniel Radcliffe,Emma Watson,5,7.8,303665097.0
+Emma Watson,Rupert Grint,5,7.8,303665097.0
+Carrie Fisher,Billy Dee Williams,2,8.5,299800238.0
+Harrison Ford,Billy Dee Williams,2,8.5,299800238.0
+Mark Hamill,Billy Dee Williams,2,8.5,299800238.0
+Ian McKellen,Martin Freeman,2,7.8,280685212.0
+Ian McKellen,Richard Armitage,2,7.8,280685212.0
+Martin Freeman,Richard Armitage,2,7.8,280685212.0
+Christian Bale,Michael Caine,3,8.57,264933589.0
+Tom Hanks,Gary Sinise,2,8.2,252045058.0
+Chris Pine,Zachary Quinto,2,7.8,243254340.0
+Daniel Craig,Judi Dench,2,7.85,235903119.0
+Hugh Jackman,Patrick Stewart,2,8.0,230099301.0
+Matt Damon,Joan Allen,2,7.85,201856506.0
+Jay Baruchel,Gerard Butler,2,7.95,197292078.0
+Christopher Lloyd,Lea Thompson,2,8.15,164554881.0
+Michael J. Fox,Christopher Lloyd,2,8.15,164554881.0
+Michael J. Fox,Lea Thompson,2,8.15,164554881.0
+Matt Damon,Franka Potente,2,7.8,148951812.0
+Paul Newman,Robert Redford,2,8.15,130954445.0
+Leonardo DiCaprio,Margot Robbie,2,7.9,129701711.0
+Arnold Schwarzenegger,Linda Hamilton,2,8.25,121621675.0
+Jamie Foxx,Kerry Washington,2,8.05,119068517.0
+Samuel L. Jackson,Bruce Willis,2,8.25,103970631.0
+Morgan Freeman,Clint Eastwood,2,8.15,100824825.0
+Russell Crowe,Christopher Plummer,2,8.0,99853769.0
+Al Pacino,Diane Keaton,3,8.6,86310824.0
+David Carradine,Daryl Hannah,2,8.05,68153614.0
+Michael Madsen,Daryl Hannah,2,8.05,68153614.0
+Michael Madsen,David Carradine,2,8.05,68153614.0
+Uma Thurman,Daryl Hannah,2,8.05,68153614.0
+Uma Thurman,David Carradine,2,8.05,68153614.0
+Uma Thurman,Michael Madsen,2,8.05,68153614.0
+Paul Newman,Strother Martin,2,8.05,59263331.0
+Jack Lemmon,Walter Matthau,2,7.85,57466366.0
+Alec Guinness,Jack Hawkins,2,8.2,44866072.0
+Keira Knightley,Brenda Blethyn,2,7.8,44666078.0
+Al Pacino,Robert De Niro,3,8.37,43912273.0
+Diane Keaton,Woody Allen,3,7.87,42450000.0
+Kate Winslet,Tom Wilkinson,2,7.95,38791539.0
+Robert De Niro,Joe Pesci,4,8.25,29914670.0
+Roberto Benigni,Nicoletta Braschi,2,8.2,29517124.0
+Tony Chiu-Wai Leung,Maggie Cheung,2,8.0,28222032.0
+Kate Winslet,Julie Christie,2,7.65,28047574.0
+Robert De Niro,James Woods,2,8.3,23879904.0
+Jason Schwartzman,Bill Murray,2,7.8,19054069.0
+Ethan Coen,John Turturro,3,7.7,18915645.0
+Simon Pegg,Nick Frost,2,7.85,18590070.0
+Clint Eastwood,Gian Maria Volontè,2,8.15,14750000.0
+Prabhas,Rana Daggubati,2,8.1,13462330.0
+Frances McDormand,Ethan Coen,2,7.85,13380988.0
+John Goodman,Ethan Coen,2,7.9,11826372.0
+Graham Chapman,John Cleese,2,8.15,10637156.0
+Clint Eastwood,Lee Van Cleef,2,8.55,10550000.0
+John Wayne,Ward Bond,2,7.8,10550000.0
+Marcello Mastroianni,Anouk Aimée,2,8.0,9783345.0
+Marlon Brando,Karl Malden,2,8.05,8800000.0
+Charles Bronson,Steve McQueen,2,7.95,8502500.0
+Humphrey Bogart,Lauren Bacall,3,7.83,6540000.0
+Ethan Hawke,Julie Delpy,3,8.03,6490227.0
+Sanjay Dutt,Boman Irani,2,8.1,6416833.0
+Ingrid Bergman,Claude Rains,2,8.2,5744280.0
+Aamir Khan,Sharman Joshi,2,8.3,4365120.0
+Boris Karloff,Colin Clive,2,7.8,4360000.0
+Tatsuya Nakadai,Jinpachi Nezu,2,8.1,4135750.0
+Shah Rukh Khan,Kajol,2,8.05,4018695.0
+Charles Chaplin,Henry Bergman,2,8.35,2806623.0
+Chico Marx,Harpo Marx,2,7.85,2537520.0
+Groucho Marx,Chico Marx,2,7.85,2537520.0
+Groucho Marx,Harpo Marx,2,7.85,2537520.0
+Shah Rukh Khan,Preity Zinta,2,7.9,2354558.0
+Sanjay Dutt,Arshad Warsi,2,8.1,2217561.0
+Julie Delpy,Zbigniew Zamachowski,2,7.75,1394800.0
+Shahab Hosseini,Taraneh Alidoosti,2,7.9,1254365.0
+Anupam Kher,Jimmy Sheirgill,2,8.05,1079369.0
+Saif Ali Khan,Preity Zinta,2,8.05,1043689.0
+Orson Welles,Joseph Cotten,2,8.2,1017413.0
+Paresh Rawal,Akshay Kumar,2,8.15,923221.0
+Ulrich Thomsen,Paprika Steen,2,7.9,824543.0
+Mads Mikkelsen,Thomas Bo Larsen,2,8.05,687185.0
+Shahid Kapoor,Kareena Kapoor,2,7.85,410800.0
+Charles Chaplin,Paulette Goddard,2,8.45,225860.0
+Toshirô Mifune,Takashi Shimura,3,8.3,182815.0
+Anatoliy Solonitsyn,Nikolay Grinko,2,8.15,168372.0
+André Ramiro,Milhem Cortaz,2,8.0,54090.0
+Wagner Moura,André Ramiro,2,8.0,54090.0
+Wagner Moura,Milhem Cortaz,2,8.0,54090.0
