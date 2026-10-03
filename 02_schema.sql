@@ -15,13 +15,13 @@ CREATE TABLE movies (
     title             VARCHAR(255) NOT NULL,
     released_year     INTEGER,
     certificate       VARCHAR(10),           -- NULL where not disclosed in source (101 rows)
-    runtime_minutes   INTEGER,
-    imdb_rating       DECIMAL(3,1),
+    runtime_minutes   INTEGER CHECK (runtime_minutes > 0),
+    imdb_rating       DECIMAL(3,1) CHECK (imdb_rating BETWEEN 0 AND 10),
     overview          TEXT,
-    meta_score        INTEGER,               -- NULL where not disclosed (157 rows)
+    meta_score        INTEGER CHECK (meta_score BETWEEN 0 AND 100),
     director          VARCHAR(255),
-    no_of_votes       INTEGER,
-    gross             BIGINT                 -- NULL where not disclosed (169 rows)
+    no_of_votes       INTEGER CHECK (no_of_votes >= 0),
+    gross             BIGINT CHECK (gross >= 0)
 );
 
 CREATE TABLE genres (
@@ -46,7 +46,8 @@ CREATE TABLE stars (
 CREATE TABLE movie_stars (
     movie_id   INTEGER NOT NULL,
     star_id    INTEGER NOT NULL,
-    star_order INTEGER NOT NULL,
+    star_order INTEGER NOT NULL CHECK (star_order BETWEEN 1 AND 4),
+    UNIQUE (movie_id, star_order),
     PRIMARY KEY (movie_id, star_id),
     FOREIGN KEY (movie_id) REFERENCES movies(movie_id),
     FOREIGN KEY (star_id) REFERENCES stars(star_id)

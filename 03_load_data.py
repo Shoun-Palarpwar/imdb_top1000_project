@@ -1,4 +1,4 @@
-"""
+r"""
 03_load_data.py
 -----------------
 Creates imdb_top1000.db (SQLite) by running 02_schema.sql, then bulk-loads
@@ -27,10 +27,9 @@ DIR = os.path.dirname(os.path.abspath(__file__))
 DB_PATH = os.path.join(DIR, "imdb_top1000.db")
 
 def main():
-    if os.path.exists(DB_PATH):
-        os.remove(DB_PATH)
-
-    conn = sqlite3.connect(DB_PATH)
+    # Validate a complete replacement in memory before touching the saved database.
+    conn = sqlite3.connect(":memory:")
+    conn.execute("PRAGMA foreign_keys = ON")
     cur = conn.cursor()
 
     with open(os.path.join(DIR, "02_schema.sql"), encoding="utf-8") as f:
@@ -75,6 +74,10 @@ def main():
         cur.execute(f"SELECT COUNT(*) FROM {t}")
         print(t, "row count:", cur.fetchone()[0])
 
+    if conn.execute("PRAGMA foreign_key_check").fetchall():
+        raise ValueError("Foreign key validation failed")
+    with sqlite3.connect(DB_PATH) as destination:
+        conn.backup(destination)
     conn.close()
     print(f"\nSQLite database ready at: {DB_PATH}")
 

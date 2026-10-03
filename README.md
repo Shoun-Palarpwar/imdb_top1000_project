@@ -1,22 +1,43 @@
 # IMDb Top 1000 — SQL Analysis Project
 
-Built from the real Kaggle dataset you uploaded (`imdb_top_1000.csv`, 1000 rows).
+Analyzes a 1,000-film snapshot from Harshit Shankhdhar's
+[IMDb Movies Dataset on Kaggle](https://www.kaggle.com/datasets/harshitshankhdhar/imdb-dataset-of-top-1000-movies-and-tv-shows).
+The source file is `imdb_top_1000.csv`; this is a historical snapshot, not live IMDb data.
+
+## Run locally
+
+Requires Python 3.9+; all dependencies are in the Python standard library.
+From the project directory, run:
+
+```bash
+python3 01_clean_and_normalize.py
+python3 03_load_data.py
+python3 05_run_and_export.py
+python3 -m unittest discover -s tests -v
+```
+
+If the raw CSV is absent, download and extract `imdb_top_1000.csv` from the dataset
+link above into this directory. You can also skip the first command and use the
+included normalized CSVs. The commands regenerate the normalized CSVs, database,
+and reports respectively. The loader validates a replacement database before
+updating the saved database, so invalid input leaves the existing database intact.
 
 ## Pipeline
 
 | Step | File | What it does |
 |---|---|---|
 | 1 | `01_clean_and_normalize.py` | Cleans the raw CSV and splits it into 5 normalized CSVs |
-| 2 | `02_schema.sql` | `CREATE TABLE` statements (portable to MySQL/Postgres/SQLite) |
+| 2 | `02_schema.sql` | Tables, relationships, indexes, and value constraints |
 | 3 | `03_load_data.py` | Builds `imdb_top1000.db` (SQLite) and loads the cleaned CSVs |
 | 4 | `04_queries.sql` | Basic SELECTs, joins, all "Inspiration" analysis queries, and views |
-| 5 | `05_run_and_export.py` | Runs everything, exports each result set to `/exports` |
+| 5 | `05_run_and_export.py` | Runs the SQL and exports marked queries to `exports/` |
 
 ## Data cleaning applied
 
 - **Released_Year**: cast to integer. One row (*Apollo 13*) had `"PG"` in this field in the
   source file (a known quirk of this Kaggle dataset) — corrected to its real release
-  year, 1995, with certificate set to "U".
+  year, 1995, preserving the source certificate. Other malformed years raise an
+  error; blank years remain unknown.
 - **Runtime**: `"142 min"` → integer `142`.
 - **Gross**: `"28,341,469"` → integer `28341469`; 169 rows have no gross figure and are
   left `NULL` rather than guessed at.
@@ -24,8 +45,11 @@ Built from the real Kaggle dataset you uploaded (`imdb_top_1000.csv`, 1000 rows)
 - **Certificate**: 101 rows missing → `NULL`.
 - **Genre**: comma-separated string → normalized `movie_genres` bridge table (21 distinct genres).
 - **Star1–Star4**: four flat columns → normalized `stars` + `movie_stars` tables (2,709 distinct
-  people, billing order preserved). A few movies credit the same person twice (dual roles,
-  or a director who also stars) — only their first billing slot is kept.
+  people, billing order preserved). Repeated names within a movie retain their
+  first billing slot; the reason for source duplicates is not established.
+- Original overview punctuation is preserved; CSV quoting handles embedded quotes.
+- The loader enforces foreign keys and numeric ranges, including ratings, runtime,
+  votes, gross, and billing positions.
 
 ## Schema
 
@@ -40,7 +64,12 @@ movie_stars(movie_id FK, star_id FK, star_order)
 
 ## Every "Inspiration" question, answered
 
-All in `04_queries.sql` section 3, and exported as CSVs:
+All in `04_queries.sql` section 3, and exported as CSVs. Each `-- export:` marker
+identifies the exact query used by the exporter; no separate Python query copies
+exist. Reports include every qualifying row, with deterministic ranking ties.
+Gross rankings require at least 3 known values for directors, 5 for actors, and
+2 for actor pairs. `film_count` / `films_together` include all matching films;
+`gross_film_count` records the actual gross sample size.
 
 | Question | Query | Export |
 |---|---|---|
@@ -48,7 +77,7 @@ All in `04_queries.sql` section 3, and exported as CSVs:
 | Gross vs. stars | 3b | `gross_by_star.csv` |
 | Votes vs. director | 3c | `votes_by_director.csv` |
 | Votes vs. stars | 3d | `votes_by_star.csv` |
-| Which genre each actor prefers | 3e | `actor_top_genre.csv` |
+| Most frequent genre per actor (3+ films; ties alphabetical) | 3e | `actor_top_genre.csv` |
 | Best actor combos by rating | 3f | `actor_pairs_by_rating.csv` |
 | Best actor combos by gross | 3g | `actor_pairs_by_gross.csv` |
 | *(bonus)* genre performance | 3h | `genre_overview.csv` |
@@ -60,7 +89,7 @@ All in `04_queries.sql` section 3, and exported as CSVs:
   ($474M), James Cameron ($350M), David Yates ($326M), Peter Jackson ($319M).
 - **Highest-grossing stars (avg, 5+ films):** Robert Downey Jr. ($447M), Chris Evans
   ($390M), Mark Ruffalo ($343M) — the Marvel ensemble dominates this list.
-- **Best-rated actor pairs (2+ films together):** The *Lord of the Rings* trio —
+- **Best-rated actor pairs (2+ films together):** The *Lord of the Rings* ensemble —
   Elijah Wood, Ian McKellen, Orlando Bloom, Viggo Mortensen — sweep the top spots at 8.8 avg rating.
 - **Genre ranking by avg rating:** War (8.01) and Western (8.00) narrowly edge out
   Sci-Fi (7.98); Horror is lowest at 7.89 — though the whole list only spans ~0.1 points
@@ -79,17 +108,25 @@ All in `04_queries.sql` section 3, and exported as CSVs:
 
 ## Running elsewhere
 
-**PostgreSQL:**
-```bash
-psql -d imdb -f 02_schema.sql
-psql -d imdb -c "\copy genres FROM 'genres.csv' CSV HEADER"
-psql -d imdb -c "\copy movies FROM 'movies.csv' CSV HEADER"
-psql -d imdb -c "\copy movie_genres FROM 'movie_genres.csv' CSV HEADER"
-psql -d imdb -c "\copy stars FROM 'stars.csv' CSV HEADER"
-psql -d imdb -c "\copy movie_stars FROM 'movie_stars.csv' CSV HEADER"
-psql -d imdb -f 04_queries.sql
-```
-(Swap `GROUP_CONCAT` for `STRING_AGG` — noted inline.)
+SQLite is the tested runtime. PostgreSQL and MySQL require adapting concatenation,
+ordered aggregation, numeric rounding, decade integer division, and CSV loading
+(including empty fields as NULL). The Python loader and exporter are SQLite-specific;
+the SQL is not advertised as executable unchanged on other databases.
 
-**MySQL:** run `02_schema.sql`, then `LOAD DATA LOCAL INFILE` each CSV in the same
-order (genres → movies → movie_genres → stars → movie_stars), then run `04_queries.sql`.
+## Interpretation limits
+
+- These are selected, highly rated films, not a representative sample of all cinema
+  or complete director/actor careers. Only the four source star fields are available.
+- Genre frequency describes appearances, not an actor's personal preferences.
+- Gross is the source's reported revenue, not profit, and is not inflation-adjusted.
+  The data card does not precisely define its market coverage; avoid labeling it
+  worldwide revenue. Missing gross is excluded from averages, not treated as zero.
+- Multi-genre films contribute to multiple genre groups; the groups overlap.
+  Revenue attributed to multiple actors is not additive across actor reports.
+- Small samples, franchise concentration, and tiny rating differences should temper
+  comparisons. Votes are snapshot counts, not ticket sales or current popularity.
+- IDs follow source row order, and people are identified by name. Stable external
+  IDs are needed before supporting refreshed datasets and durable shared links.
+
+See [PRODUCT_IDEAS.md](PRODUCT_IDEAS.md) for the proposed comparison experience
+and a staged feature roadmap. These features are proposals, not implemented UI.

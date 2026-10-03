@@ -1,80 +1,80 @@
-star_name,film_count,avg_rating,avg_votes
-Ian McKellen,7,8.21,1009054.0
-Leonardo DiCaprio,11,8.13,980200.0
-Kevin Spacey,5,8.3,874632.0
-Tom Hardy,5,8.1,819059.0
-Robert Downey Jr.,7,7.97,793967.0
-Harrison Ford,8,8.26,792634.0
-Viggo Mortensen,5,8.26,784671.0
-Samuel L. Jackson,6,7.95,781889.0
-Morgan Freeman,7,8.19,781858.0
-Christian Bale,11,8.05,778720.0
-Brad Pitt,12,8.02,762061.0
-Bruce Willis,7,8.04,746672.0
-Joaquin Phoenix,5,8.18,678002.0
-Michael Caine,9,8.08,673832.0
-Chris Evans,6,7.9,670740.0
-Tom Hanks,14,8.04,669583.0
-Jack Nicholson,6,8.18,635245.0
-Matt Damon,11,8.01,621853.0
-Edward Norton,7,7.97,617572.0
-Scarlett Johansson,9,7.9,617511.0
-Mark Ruffalo,7,8.04,615558.0
-Matthew McConaughey,6,8.0,610394.0
-Gary Oldman,6,7.98,594903.0
-Diane Keaton,6,8.23,588237.0
-Daniel Radcliffe,6,7.77,579623.0
-Rupert Grint,6,7.77,579623.0
-Russell Crowe,7,8.03,534233.0
-Ed Harris,6,7.83,518042.0
-John Goodman,5,7.9,492914.0
-Emma Watson,7,7.83,489293.0
-Ryan Gosling,5,7.88,484508.0
-Jennifer Connelly,5,7.94,472305.0
-Al Pacino,13,8.08,469109.0
-Kate Winslet,5,7.8,459004.0
-Robert De Niro,17,8.12,458073.0
-Joe Pesci,6,8.03,454954.0
-Jake Gyllenhaal,7,7.83,415363.0
-Josh Brolin,6,7.77,400341.0
-Tom Cruise,7,7.8,399703.0
-Rachel McAdams,6,7.78,378600.0
-Catherine Keener,5,7.78,376543.0
-Alec Guinness,5,8.14,352794.0
-Julianne Moore,6,7.9,339485.0
-Bill Murray,6,7.82,339365.0
-Christopher Plummer,6,7.87,336986.0
-Jeff Bridges,7,7.79,335115.0
-Anthony Hopkins,5,8.04,327465.0
-Ethan Coen,6,7.82,327269.0
-Johnny Depp,9,7.73,323485.0
-Kevin Bacon,6,7.7,309930.0
-Frances McDormand,5,7.92,295720.0
-Clint Eastwood,12,7.96,279404.0
-Ethan Hawke,9,7.89,270774.0
-Sean Connery,5,7.86,259055.0
-Sean Penn,6,7.75,250939.0
-Denzel Washington,9,7.71,241606.0
-Dustin Hoffman,6,7.92,197646.0
-Philip Seymour Hoffman,6,7.77,190501.0
-Gene Hackman,6,7.82,173682.0
-James Stewart,10,8.14,172429.0
-Tabu,5,8.14,166090.0
-Willem Dafoe,5,7.86,165863.0
-Julie Delpy,5,7.92,160857.0
-Aamir Khan,8,8.24,145745.0
-Charles Chaplin,6,8.33,138907.0
-Jack Lemmon,5,7.98,135563.0
-Paul Newman,6,8.02,126935.0
-William Holden,6,8.03,122978.0
-Humphrey Bogart,9,7.96,121094.0
-Tony Chiu-Wai Leung,5,7.98,105212.0
-Toshirô Mifune,7,8.24,104062.0
-Woody Allen,5,7.84,102769.0
-Cary Grant,7,7.96,99668.0
-Audrey Hepburn,6,7.8,89360.0
-Shah Rukh Khan,6,8.05,71956.0
-Tatsuya Nakadai,6,8.25,60892.0
-Akshay Kumar,5,8.06,53122.0
-John Wayne,6,7.88,51986.0
-Katharine Hepburn,6,7.78,47748.0
+star_name,film_count,total_votes,avg_votes
+Ian McKellen,7,7063378,1009054.0
+Leonardo DiCaprio,11,10782195,980200.0
+Kevin Spacey,5,4373161,874632.0
+Tom Hardy,5,4095293,819059.0
+Robert Downey Jr.,7,5557769,793967.0
+Harrison Ford,8,6341070,792634.0
+Viggo Mortensen,5,3923357,784671.0
+Samuel L. Jackson,6,4691336,781889.0
+Morgan Freeman,7,5473009,781858.0
+Christian Bale,11,8565922,778720.0
+Brad Pitt,12,9144728,762061.0
+Bruce Willis,7,5226702,746672.0
+Joaquin Phoenix,5,3390011,678002.0
+Michael Caine,9,6064485,673832.0
+Chris Evans,6,4024438,670740.0
+Tom Hanks,14,9374159,669583.0
+Jack Nicholson,6,3811471,635245.0
+Matt Damon,11,6840383,621853.0
+Edward Norton,7,4323002,617572.0
+Scarlett Johansson,9,5557598,617511.0
+Mark Ruffalo,7,4308905,615558.0
+Matthew McConaughey,6,3662364,610394.0
+Gary Oldman,6,3569415,594903.0
+Diane Keaton,6,3529424,588237.0
+Daniel Radcliffe,6,3477737,579623.0
+Rupert Grint,6,3477737,579623.0
+Russell Crowe,7,3739630,534233.0
+Ed Harris,6,3108250,518042.0
+John Goodman,5,2464570,492914.0
+Emma Watson,7,3425054,489293.0
+Ryan Gosling,5,2422538,484508.0
+Jennifer Connelly,5,2361527,472305.0
+Al Pacino,13,6098413,469109.0
+Kate Winslet,5,2295019,459004.0
+Robert De Niro,17,7787234,458073.0
+Joe Pesci,6,2729725,454954.0
+Jake Gyllenhaal,7,2907539,415363.0
+Josh Brolin,6,2402043,400341.0
+Tom Cruise,7,2797921,399703.0
+Rachel McAdams,6,2271599,378600.0
+Catherine Keener,5,1882716,376543.0
+Alec Guinness,5,1763970,352794.0
+Julianne Moore,6,2036907,339485.0
+Bill Murray,6,2036192,339365.0
+Christopher Plummer,6,2021915,336986.0
+Jeff Bridges,7,2345808,335115.0
+Anthony Hopkins,5,1637323,327465.0
+Ethan Coen,6,1963613,327269.0
+Johnny Depp,9,2911365,323485.0
+Kevin Bacon,6,1859581,309930.0
+Frances McDormand,5,1478599,295720.0
+Clint Eastwood,12,3352846,279404.0
+Ethan Hawke,9,2436965,270774.0
+Sean Connery,5,1295275,259055.0
+Sean Penn,6,1505634,250939.0
+Denzel Washington,9,2174458,241606.0
+Dustin Hoffman,6,1185873,197646.0
+Philip Seymour Hoffman,6,1143007,190501.0
+Gene Hackman,6,1042092,173682.0
+James Stewart,10,1724290,172429.0
+Tabu,5,830452,166090.0
+Willem Dafoe,5,829316,165863.0
+Julie Delpy,5,804285,160857.0
+Aamir Khan,8,1165956,145745.0
+Charles Chaplin,6,833442,138907.0
+Jack Lemmon,5,677814,135563.0
+Paul Newman,6,761610,126935.0
+William Holden,6,737868,122978.0
+Humphrey Bogart,9,1089849,121094.0
+Tony Chiu-Wai Leung,5,526061,105212.0
+Toshirô Mifune,7,728436,104062.0
+Woody Allen,5,513847,102769.0
+Cary Grant,7,697674,99668.0
+Audrey Hepburn,6,536162,89360.0
+Shah Rukh Khan,6,431735,71956.0
+Tatsuya Nakadai,6,365349,60892.0
+Akshay Kumar,5,265610,53122.0
+John Wayne,6,311913,51986.0
+Katharine Hepburn,6,286489,47748.0

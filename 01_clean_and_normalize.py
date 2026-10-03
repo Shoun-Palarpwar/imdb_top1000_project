@@ -14,7 +14,7 @@ set of CSVs matching the star-schema-ish design in 02_schema.sql:
 Cleaning steps applied:
   - Released_Year: cast to int. One known bad row ("PG" for Apollo 13, a
     documented quirk of this Kaggle dataset) is corrected to 1995 using the
-    film's real-world release year; certificate is fixed to "U" for that row.
+    film's real-world release year; the source certificate is preserved.
   - Runtime: "142 min" -> integer minutes (142)
   - Gross: "28,341,469" -> integer 28341469; blank -> NULL (169 missing rows,
     left as NULL rather than guessed)
@@ -31,8 +31,22 @@ DIR = os.path.dirname(os.path.abspath(__file__))
 SRC = os.path.join(DIR, "imdb_top_1000.csv")
 
 def clean_runtime(val):
-    m = re.match(r"(\d+)", val.strip())
-    return int(m.group(1)) if m else None
+    if not val.strip():
+        return None
+    m = re.fullmatch(r"(\d+)\s+min", val.strip())
+    if not m or int(m.group(1)) <= 0:
+        raise ValueError(f"Invalid runtime: {val!r}")
+    return int(m.group(1))
+
+def clean_year(title, val):
+    val = val.strip()
+    if title == "Apollo 13" and val == "PG":
+        return 1995
+    if not val:
+        return None
+    if not re.fullmatch(r"\d{4}", val):
+        raise ValueError(f"Invalid release year for {title!r}: {val!r}")
+    return int(val)
 
 def clean_gross(val):
     val = val.strip()
@@ -63,12 +77,7 @@ def main():
         # --- known data-quality fix ---
         year_raw = r["Released_Year"].strip()
         cert = r["Certificate"].strip() or None
-        if not year_raw.isdigit():
-            # Apollo 13's real release year; Kaggle source has "PG" here by mistake
-            year = 1995
-            cert = "U"
-        else:
-            year = int(year_raw)
+        year = clean_year(title, year_raw)
 
         runtime = clean_runtime(r["Runtime"])
         rating = float(r["IMDB_Rating"]) if r["IMDB_Rating"].strip() else None
@@ -76,13 +85,13 @@ def main():
         director = r["Director"].strip()
         votes = clean_int(r["No_of_Votes"])
         gross = clean_gross(r["Gross"])
-        overview = r["Overview"].strip().replace('"', "'")
+        overview = r["Overview"].strip()
 
         movies_rows.append((i, title, year, cert, runtime, rating, overview,
                              meta, director, votes, gross))
 
         # Genres
-        for g in [g.strip() for g in r["Genre"].split(",") if g.strip()]:
+        for g in dict.fromkeys(g.strip() for g in r["Genre"].split(",") if g.strip()):
             if g not in genre_name_to_id:
                 gid = len(genre_name_to_id) + 1
                 genre_name_to_id[g] = gid
@@ -90,8 +99,7 @@ def main():
             movie_genre_rows.append((i, genre_name_to_id[g]))
 
         # Stars (Star1..Star4), preserving billing order.
-        # A handful of movies credit the same person twice (e.g. dual roles,
-        # or a director who also stars) -- keep only their first billing slot
+        # A handful of source rows list the same person twice; keep the first slot
         # since (movie_id, star_id) is the primary key.
         seen_star_ids_this_movie = set()
         for order, key in enumerate(["Star1", "Star2", "Star3", "Star4"], start=1):
