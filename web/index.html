@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#151411">
+  <meta name="description" content="A thousand films. A different way in. Explore the stories, connections, and numbers behind the IMDb Top 1000.">
+  <title>Double Feature — A world within every frame</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23151411'/%3E%3Cpath d='M16 12h14v40H16zm18 0h14v40H34z' fill='%23df7954'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <section id="entrance" class="entrance" aria-label="Welcome to Double Feature">
+    <header class="landing-header">
+      <a href="#" class="brand" aria-label="Double Feature entrance"><span class="brand-icon" aria-hidden="true">Ⅱ</span><span>DOUBLE<br>FEATURE<span class="brand-dot">®</span></span></a>
+      <span class="edition">AN INDEPENDENT EXPLORATION OF CINEMA</span>
+      <button class="text-button" id="skip-intro">Skip intro <span aria-hidden="true">↗</span></button>
+    </header>
+    <div class="landing-body">
+      <div class="landing-copy">
+        <p class="eyebrow"><span class="live-dot"></span> THE IMDb TOP 1000, REIMAGINED</p>
+        <h1>Every film.<br>A world<br><em>within.</em></h1>
+        <p class="landing-description">Beyond the credits. Beneath the ratings.<br>A thousand stories, waiting to be discovered.</p>
+        <button id="enter" class="enter-button">Enter the world of cinema <span aria-hidden="true">↗</span></button>
+        <span class="landing-footnote">NO TICKET REQUIRED. JUST CURIOSITY.</span>
+      </div>
+      <div class="portal-scene" aria-hidden="true">
+        <div class="portal-topline"><span>SCREEN 001</span><span>NOW ADMITTING</span></div>
+        <div class="portal-glow"></div>
+        <div class="door-frame"><div class="door-world"><span>A WORLD<br>WITHIN<br>EVERY FRAME.</span><i>THE SHOW IS ABOUT TO BEGIN</i></div><div class="door door-left"><div class="door-inset"></div><b>D</b><span class="door-handle"></span></div><div class="door door-right"><div class="door-inset"></div><b>F</b><span class="door-handle"></span></div></div>
+        <div class="portal-floor"></div><div class="portal-caption"><span>LEAVE THE ORDINARY OUTSIDE.</span><span>01 / 1000</span></div>
+      </div>
+    </div>
+    <footer class="landing-footer"><span>1,000 FILMS <i>✦</i> 21 GENRES <i>✦</i> COUNTLESS CONNECTIONS</span><span>A LOVE LETTER TO THE BIG SCREEN <span aria-hidden="true">↘</span></span></footer>
+  </section>
+
+  <div id="app" hidden>
+    <header class="app-header"><button class="brand" data-action="navigate" data-page="home" aria-label="Double Feature home"><span class="brand-icon" aria-hidden="true">Ⅱ</span><span>DOUBLE<br>FEATURE<span class="brand-dot">®</span></span></button><span class="header-caption">THE CINEMA IS YOURS.</span><button class="text-button" data-action="entrance">Back to the entrance ↗</button></header>
+    <nav id="navigation" class="navigation" aria-label="Main navigation"></nav>
+    <main id="main" tabindex="-1"></main>
+    <footer class="app-footer"><span>DOUBLE FEATURE <span class="muted">/ An exploration in film & data</span></span><span>A historical collection. An endless conversation.</span></footer>
+  </div>
+  <aside id="compare-tray" class="compare-tray" aria-label="Movie comparison tray" hidden></aside>
+  <dialog id="movie-dialog" aria-label="Movie details"></dialog>
+  <div id="toast" class="toast" role="status"></div>
+  <noscript><p class="noscript">Please enable JavaScript to explore the collection. The original CSV reports remain available in the project's exports directory.</p></noscript>
+</body>
+</html>

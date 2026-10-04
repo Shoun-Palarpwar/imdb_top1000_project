@@ -6,6 +6,34 @@ The source file is `imdb_top_1000.csv`; this is a historical snapshot, not live 
 
 ## Run locally
 
+### The Double Feature website
+
+```bash
+python3 server.py --port 8017
+```
+
+Open [Double Feature locally](http://127.0.0.1:8017). The included database is ready
+to use. No npm installation, Python packages, or build step is required. Stop the
+server with Ctrl+C. To rebuild the data, use the pipeline commands below.
+
+The site includes a cinematic door-opening entrance, a lobby, the dataset's origin
+story, searchable film browsing with genre/decade filters and sorting, film detail
+dialogs, a two-film comparison tray, and movie/director/actor comparisons. Separate
+analysis rooms reveal nine live SQL reports with charts, tables, and CSV downloads.
+The interface supports mobile layouts, keyboard controls, and reduced motion.
+
+`server.py` serves `web/` and opens SQLite read-only. The API routes are
+`/api/catalog`, `/api/report?name=gross_by_director`, and
+`/api/compare?kind=movie&id=1&id=2`. Comparison averages exclude missing values and
+include sample counts. Report SQL comes directly from `04_queries.sql`.
+
+Poster links are optional metadata read from the source CSV; they are loaded from
+the source image host with a title-card fallback if unavailable. Fonts load from
+Google Fonts with local fallbacks. The app remains usable without those services.
+This is a local application; public hosting and durable user accounts are not configured.
+
+### Rebuild the data
+
 Requires Python 3.9+; all dependencies are in the Python standard library.
 From the project directory, run:
 
@@ -128,5 +156,6 @@ the SQL is not advertised as executable unchanged on other databases.
 - IDs follow source row order, and people are identified by name. Stable external
   IDs are needed before supporting refreshed datasets and durable shared links.
 
-See [PRODUCT_IDEAS.md](PRODUCT_IDEAS.md) for the proposed comparison experience
-and a staged feature roadmap. These features are proposals, not implemented UI.
+See [PRODUCT_IDEAS.md](PRODUCT_IDEAS.md) for the product direction and remaining
+feature roadmap. The initial browsing, comparison, and reporting experience is
+now implemented; recommendations, watchlists, and the connection explorer remain future work.

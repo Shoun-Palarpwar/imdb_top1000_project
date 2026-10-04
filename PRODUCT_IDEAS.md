@@ -3,8 +3,11 @@
 Turn the dataset into a cinema discovery and comparison experience. The signature
 interaction is a persistent two-slot comparison tray: add a movie, director, or
 actor anywhere, select another of the same type, then open a full comparison page.
-This document describes future functionality; the repository currently provides
-the data pipeline and reports.
+The first local website is now implemented in `web/`, backed by `server.py` and
+SQLite. It includes the cinematic entrance, dataset story, film search and details,
+a comparison tray, movie/director/actor comparisons, and nine analysis reports.
+The specification below also describes future extensions: timeline comparisons,
+recommendations, connection exploration, watchlists, and shared links.
 
 ## 1. The comparison room (first release)
 
