@@ -247,23 +247,79 @@ async function navigate(page, updateHash = true) {
   document.title = `${tabs.find(([key]) => key === page)[1]} — Double Feature`;
 }
 
+let entranceRun = 0;
+
+function preparePrologue() {
+  loadData().then(() => {
+    $('#lobby-preview').innerHTML = `<div class="preview-header"><span>Ⅱ &nbsp; DOUBLE FEATURE</span><span>THE CINEMA IS YOURS.</span></div><div class="preview-navigation">The lobby &nbsp; The story &nbsp; The collection &nbsp; Compare &nbsp; Directors</div><div class="preview-home">${home()}</div>`;
+    document.querySelectorAll('[data-film]').forEach(frame => {
+      const movie = state.data.movies.find(m => m.title === frame.dataset.film);
+      if (!movie?.poster || frame.querySelector('img')) return;
+      const image = document.createElement('img');
+      image.alt = '';
+      image.referrerPolicy = 'no-referrer';
+      image.src = movie.poster;
+      frame.append(image);
+    });
+  }).catch(() => {
+    $('#lobby-preview').innerHTML = '<div class="preview-header">Ⅱ &nbsp; DOUBLE FEATURE</div><div class="preview-navigation">The lobby &nbsp; The story &nbsp; The collection &nbsp; Compare</div><div class="preview-home"><section class="home-hero"><div><h1>The lights dim.<br>The stories <em>begin.</em></h1><p>A thousand films. The people who made them.</p></div></section></div>';
+  });
+}
+
+async function openDoors() {
+  const trigger = $('#door-trigger');
+  if (trigger.disabled) return;
+  const run = ++entranceRun;
+  trigger.disabled = true;
+  $('#quote-room').hidden = false;
+  preparePrologue();
+  // Establish the closed-door frame before starting both reveals.
+  void $('#quote-room').offsetWidth;
+  $('#entrance').classList.add('doors-opening');
+  if (!reducedMotion()) await new Promise(resolve => setTimeout(resolve,1700));
+  if (run !== entranceRun) return;
+  trigger.hidden = true;
+  $('#quote-room').inert = false;
+  $('#cinema-quote').focus({preventScroll:true});
+  document.title = 'The prologue — Double Feature';
+}
+
+function resetEntrance(updateHistory = true) {
+  entranceRun++;
+  state.request++;
+  $('#app').hidden = true;
+  $('#compare-tray').hidden = true;
+  $('#entrance').hidden = false;
+  $('#entrance').classList.remove('doors-opening','leaving');
+  $('#door-trigger').hidden = false;
+  $('#door-trigger').disabled = false;
+  $('#quote-room').hidden = true;
+  $('#quote-room').inert = true;
+  $('#quote-room').scrollTop = 0;
+  $('#enter').disabled = false;
+  document.body.classList.add('entrance-active');
+  if (updateHistory) history.pushState(null,'',location.pathname);
+  window.scrollTo(0,0);
+  $('#door-trigger').focus({preventScroll:true});
+  document.title = 'Double Feature — A world within every frame';
+}
+
 async function enter(animate = true, page = 'home') {
+  const run = ++entranceRun;
   $('#enter').disabled = true;
-  $('#skip-intro').disabled = true;
-  loadData().catch(() => {});
   if (animate && !reducedMotion()) {
-    $('#entrance').classList.add('opening');
-    await new Promise(resolve => setTimeout(resolve,1500));
     $('#entrance').classList.add('leaving');
-    await new Promise(resolve => setTimeout(resolve,300));
+    await new Promise(resolve => setTimeout(resolve,350));
   }
+  if (run !== entranceRun) return;
   $('#entrance').hidden = true;
   $('#app').hidden = false;
+  document.body.classList.remove('entrance-active');
   await navigate(page);
 }
 
+$('#door-trigger').addEventListener('click',openDoors);
 $('#enter').addEventListener('click',() => enter(true));
-$('#skip-intro').addEventListener('click',() => enter(false));
 
 document.addEventListener('click', event => {
   const button = event.target.closest('[data-action]');
@@ -272,12 +328,7 @@ document.addEventListener('click', event => {
   if (action === 'navigate') navigate(page);
   else if (action === 'retry') navigate(state.page);
   else if (action === 'entrance') {
-    state.request++;
-    $('#app').hidden = true;$('#compare-tray').hidden = true;
-    $('#entrance').hidden = false;$('#entrance').classList.remove('opening','leaving');
-    $('#enter').disabled = false;$('#skip-intro').disabled = false;
-    history.pushState(null,'',location.pathname);window.scrollTo(0,0);$('#enter').focus();
-    document.title = 'Double Feature — A world within every frame';
+    resetEntrance();
   } else if (action === 'details') showDetails(id);
   else if (action === 'close-dialog') $('#movie-dialog').close();
   else if (action === 'add' || action === 'remove') toggleMovie(id);
@@ -317,7 +368,7 @@ document.addEventListener('change', event => {
 $('#movie-dialog').addEventListener('click', event => {if (event.target === $('#movie-dialog')) {const r = event.target.getBoundingClientRect();if(event.clientX<r.left || event.clientX>r.right || event.clientY<r.top || event.clientY>r.bottom) event.target.close();}});
 window.addEventListener('popstate', () => {
   const page = location.hash.slice(1);
-  if (!page) {state.request++;$('#app').hidden=true;$('#compare-tray').hidden=true;$('#entrance').hidden=false;$('#entrance').classList.remove('opening','leaving');$('#enter').disabled=false;$('#skip-intro').disabled=false;document.title='Double Feature — A world within every frame';}
+  if (!page) resetEntrance(false);
   else if ($('#app').hidden) enter(false,page);
   else navigate(page,false);
 });

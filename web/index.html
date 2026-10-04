@@ -8,32 +8,40 @@
   <title>Double Feature — A world within every frame</title>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23151411'/%3E%3Cpath d='M16 12h14v40H16zm18 0h14v40H34z' fill='%23df7954'/%3E%3C/svg%3E">
   <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/entrance.css">
   <script src="/app.js" defer></script>
 </head>
-<body>
+<body class="entrance-active">
   <a class="skip-link" href="#main">Skip to content</a>
-  <section id="entrance" class="entrance" aria-label="Welcome to Double Feature">
-    <header class="landing-header">
-      <a href="#" class="brand" aria-label="Double Feature entrance"><span class="brand-icon" aria-hidden="true">Ⅱ</span><span>DOUBLE<br>FEATURE<span class="brand-dot">®</span></span></a>
-      <span class="edition">AN INDEPENDENT EXPLORATION OF CINEMA</span>
-      <button class="text-button" id="skip-intro">Skip intro <span aria-hidden="true">↗</span></button>
-    </header>
-    <div class="landing-body">
-      <div class="landing-copy">
-        <p class="eyebrow"><span class="live-dot"></span> THE IMDb TOP 1000, REIMAGINED</p>
-        <h1>Every film.<br>A world<br><em>within.</em></h1>
-        <p class="landing-description">Beyond the credits. Beneath the ratings.<br>A thousand stories, waiting to be discovered.</p>
+  <section id="entrance" class="entrance immersive-entrance" aria-label="Welcome to Double Feature">
+    <div id="quote-room" class="quote-room" hidden inert>
+      <div id="lobby-preview" class="lobby-preview" aria-hidden="true" inert></div>
+      <div class="quote-wash" aria-hidden="true"></div>
+      <div class="scrapbook" aria-hidden="true">
+        <div class="ephemera magazine"><span class="paper-tape"></span><div class="magazine-issue">THE INDEPENDENT FILM JOURNAL · Nº 01</div><strong>CINÉMA</strong><div class="magazine-art"><span class="magazine-sun"></span><span class="magazine-stairs"></span><i>THE ART<br>OF GETTING<br>LOST.</i></div><div class="magazine-footer">A THOUSAND FILMS.<br>A MILLION WAYS TO FEEL.</div></div>
+        <div class="ephemera sticky-note"><span class="paper-tape"></span><span class="note-star">✳</span>For the films<br>we finish.<br>And the ones<br>that never<br><em>leave us.</em><span class="note-signature">— a fellow cinephile</span></div>
+        <div class="ephemera postage"><div class="stamp-inner"><span>THE CINEMA SOCIETY</span><svg viewBox="0 0 100 74" fill="none"><circle cx="35" cy="35" r="27" stroke="currentColor" stroke-width="2"/><circle cx="35" cy="35" r="5" fill="currentColor"/><circle cx="35" cy="19" r="7" stroke="currentColor"/><circle cx="51" cy="35" r="7" stroke="currentColor"/><circle cx="35" cy="51" r="7" stroke="currentColor"/><circle cx="19" cy="35" r="7" stroke="currentColor"/><path d="M60 31h15l15-9v27l-15-9H60M22 67h53" stroke="currentColor" stroke-width="2"/></svg><b>24 FRAMES / SECOND</b><span>KEEP THE REEL TURNING</span></div></div>
+        <div class="ephemera cinema-ticket"><span class="ticket-stub">NO. 001000<br><b>DF</b></span><span class="ticket-main"><small>DOUBLE FEATURE PICTURE HOUSE</small><strong>ADMIT ONE</strong><span>ANY ERA. ANY WORLD.</span><span class="ticket-perforation"></span><small>SEAT: YOURS &nbsp; / &nbsp; VALID: ALWAYS</small></span></div>
+        <div class="ephemera film-strip"><span>35mm · THE GOOD STUFF</span><div class="film-frames"><i data-film="The Godfather">THE<br>GODFATHER</i><i data-film="Interstellar">INTERSTELLAR</i><i data-film="Pulp Fiction">PULP<br>FICTION</i></div><span>01 &nbsp; ▵ &nbsp; 02 &nbsp; ▵ &nbsp; 03</span></div>
+        <div class="ephemera round-seal">OFFICIAL SELECTION<span>✦</span>ONE MORE FILM</div>
+      </div>
+      <div class="quote-content">
+        <p class="eyebrow quote-kicker">A LOVE LETTER TO THE BIG SCREEN</p>
+        <span class="opening-quote" aria-hidden="true">“</span>
+        <h1 id="cinema-quote" tabindex="-1">Some stories end<br>with the credits.<br><em>The good ones<br>follow you home.</em></h1>
+        <p class="quote-credit">A NOTE FROM DOUBLE FEATURE</p>
+        <p class="quote-invitation">A thousand films. A hundred years.<br>Your next obsession is waiting.</p>
         <button id="enter" class="enter-button">Enter the world of cinema <span aria-hidden="true">↗</span></button>
-        <span class="landing-footnote">NO TICKET REQUIRED. JUST CURIOSITY.</span>
+        <span class="quote-smallprint">TAKE YOUR TIME. THE WORLD OUTSIDE CAN WAIT.</span>
       </div>
-      <div class="portal-scene" aria-hidden="true">
-        <div class="portal-topline"><span>SCREEN 001</span><span>NOW ADMITTING</span></div>
-        <div class="portal-glow"></div>
-        <div class="door-frame"><div class="door-world"><span>A WORLD<br>WITHIN<br>EVERY FRAME.</span><i>THE SHOW IS ABOUT TO BEGIN</i></div><div class="door door-left"><div class="door-inset"></div><b>D</b><span class="door-handle"></span></div><div class="door door-right"><div class="door-inset"></div><b>F</b><span class="door-handle"></span></div></div>
-        <div class="portal-floor"></div><div class="portal-caption"><span>LEAVE THE ORDINARY OUTSIDE.</span><span>01 / 1000</span></div>
-      </div>
+      <span class="quote-corner" aria-hidden="true">PROLOGUE / 001</span>
     </div>
-    <footer class="landing-footer"><span>1,000 FILMS <i>✦</i> 21 GENRES <i>✦</i> COUNTLESS CONNECTIONS</span><span>A LOVE LETTER TO THE BIG SCREEN <span aria-hidden="true">↘</span></span></footer>
+    <button id="door-trigger" class="door-trigger" aria-label="Open the cinema doors" aria-describedby="door-invitation">
+      <span class="full-door full-door-left" aria-hidden="true"><span class="door-moulding"></span><span class="door-upper-panel"></span><span class="door-lower-panel"></span><span class="door-letter">D</span><span class="full-door-handle"></span><span class="door-bottom-detail">EST. IN CURIOSITY</span></span>
+      <span class="full-door full-door-right" aria-hidden="true"><span class="door-moulding"></span><span class="door-upper-panel"></span><span class="door-lower-panel"></span><span class="door-letter">F</span><span class="full-door-handle"></span><span class="door-bottom-detail">BUILT FOR THE LOVE OF FILM</span></span>
+      <span class="door-seam" aria-hidden="true"></span>
+      <span class="door-front-copy"><span class="door-top-caption">AN INDEPENDENT EXPLORATION OF CINEMA</span><span class="door-plaque">DOUBLE FEATURE<span>THE PICTURE HOUSE</span></span><span id="door-invitation" class="door-invitation">Leave the ordinary outside.<span>CLICK ANYWHERE TO OPEN</span><i aria-hidden="true">↗</i></span><span class="door-front-footer">1,000 FILMS &nbsp; ✦ &nbsp; COUNTLESS WORLDS</span></span>
+    </button>
   </section>
 
   <div id="app" hidden>

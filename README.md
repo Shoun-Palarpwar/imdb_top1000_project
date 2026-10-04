@@ -16,7 +16,10 @@ Open [Double Feature locally](http://127.0.0.1:8017). The included database is r
 to use. No npm installation, Python packages, or build step is required. Stop the
 server with Ctrl+C. To rebuild the data, use the pipeline commands below.
 
-The site includes a cinematic door-opening entrance, a lobby, the dataset's origin
+The site opens with full-screen, clickable cinema doors. They reveal a quote and
+vintage movie scrapbook over a faded preview of the lobby; a final entry button
+opens the main website. Both entrance stages support keyboard navigation and
+reduced motion. The site includes a lobby, the dataset's origin
 story, searchable film browsing with genre/decade filters and sorting, film detail
 dialogs, a two-film comparison tray, and movie/director/actor comparisons. Separate
 analysis rooms reveal nine live SQL reports with charts, tables, and CSV downloads.
